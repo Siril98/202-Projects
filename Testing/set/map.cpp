@@ -1,0 +1,26 @@
+#include<iostream>
+#include<string>
+#include<map>
+using namespace std;
+
+int main(){
+
+  map<string,int> mapofWords;
+
+  mapofWords.insert(make_pair("earth",1));
+  mapofWords.insert(make_pair("moon",2));
+  mapofWords["sun"] = 3;
+  mapofWords["earth"] = 4;
+
+  map<string,int>::iterator it = mapofWords.begin();
+
+  while(it != mapofWords.end()){
+    cout<<  it->first << "::" << it->second << endl;
+    it++;
+  }
+
+  if(mapofWords.insert(make_pair("earth",1)).second == false){
+    cout << " Element with the key earth not inserted" << endl;
+  }
+  return 0;
+}

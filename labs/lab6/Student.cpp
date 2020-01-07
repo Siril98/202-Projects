@@ -1,0 +1,44 @@
+#include "Student.h"
+
+
+
+Student:: Student(){
+
+  
+  // m_ptr = floatPtr;
+
+  // m_ptr = new float[20];
+  
+
+  cout << "Enter total number of students:" << endl;
+  cin>> m_num;
+
+  m_ptr = new float[m_num];
+  cout<< "Enter GPA of students." << endl;
+
+  for(int i = 0; i < m_num; i++){
+
+    // m_ptr = new float[m_num];
+    cout << "Student" << i+1 << ":" << endl;
+    cin>> m_ptr[i];
+    
+      }
+
+
+
+}
+
+Student:: ~Student(){
+
+
+}
+
+void Student:: Display(){
+  cout<< "Displaying GPA of students." << endl;
+  for(int i = 0; i < m_num; i++){
+    cout<<"Student" << i+1 << ":" << m_ptr[i] << endl;
+  }
+  
+  delete [] m_ptr;
+
+}

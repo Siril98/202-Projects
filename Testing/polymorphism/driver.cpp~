@@ -1,0 +1,18 @@
+#include "Movie.h" "Animated.h"
+
+int main(){
+
+  Movie* movie1 = new Movie("Stop Talking While LiveCoding", 100 , "Jeremy Dixon");
+
+  movie1->ShowMovie();
+
+  Movie* animated1 = new Animated("Dumbo - Livecoding", 31 , "Donald Trump");
+  animated1 -> ShowMovie();
+  
+  delete movie1;
+  delete animated1;
+  
+  movie1 = NULL;
+  animated1 =NULL;
+  return 0;
+}

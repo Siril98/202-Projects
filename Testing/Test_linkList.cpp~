@@ -1,0 +1,17 @@
+#include "LinkedList.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+
+int main(){
+
+  LinkedList Test;
+
+  return 0;
+
+
+
+
+}

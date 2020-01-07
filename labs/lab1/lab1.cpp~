@@ -1,0 +1,41 @@
+// Siril Pattammady
+// Lab1
+// 02/9/17
+// lab1.cpp
+
+#include <iostream>
+using namespace std;
+
+
+void lines(int num,char* drink);
+
+void lines(int num,char* drink){
+  while(num>0){
+      cout<< num<<"bottles of"<<drink<< "on the wall\n";
+      cout<< num<<"bottles of"<<drink<<".\n";
+      cout<<"Take one down, pass it around.";
+      num--;
+    }
+  if(num == 0)
+    cout<<"No bottles of soda on the wall.\n";
+  
+}	      
+	      
+int main(){
+  int num;
+  char drink[80];
+
+ 
+  cout<<"What number would you like to start with?:\n";
+  cin>> num;
+  if (cin.peek() == '\n')
+    cin.ignore();
+  
+  cout<<"What type of bottle would you like?:\n";
+  cin.getline(drink,80);
+    
+  lines(int num,char*drink); 
+
+
+  return 0;
+}

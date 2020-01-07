@@ -1,0 +1,11 @@
+// Food
+
+#include "Food.h"
+
+Food::Food(){
+  
+}
+
+Food::Food(string name){
+
+}

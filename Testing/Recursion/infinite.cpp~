@@ -1,0 +1,14 @@
+#include <iostream>
+
+using namespace std;
+
+
+void infinite(int num){
+
+  cout<< num << endl;
+  infinite(num+1);
+
+}
+int main(){
+  infinite(1);
+}

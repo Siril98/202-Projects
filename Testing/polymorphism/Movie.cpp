@@ -1,0 +1,13 @@
+#include "Movie.h"
+
+
+
+Movie::Movie(string name, int rating, string director){
+
+  m_name = name;
+
+  m_rating = rating;
+
+  m_director = director;
+
+};

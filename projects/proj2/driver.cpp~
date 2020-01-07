@@ -1,0 +1,17 @@
+#include <iostream>
+#include <string>
+#include "Game.h"
+
+using namespace std;
+
+int main () {
+  Game game = Game();
+
+  cout << "MEOWMEOWMEOWMEOWMEOWMEOWMEOWMEOWMEOW"<< endl;
+  cout<< "Welcome to Exploding Kittens"<< endl; 
+  cout<<"A Game By" << endl;
+  cout<< " MEOWMEOWMEOWMEOWMEOWMEOWMEOWMEOWMEOW"<< endl;
+    
+  
+  return 0;
+}

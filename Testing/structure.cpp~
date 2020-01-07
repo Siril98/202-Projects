@@ -1,0 +1,26 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+struct movie
+{
+  string title;
+  int year;
+  string director;
+};
+
+int main()
+{
+  movie movie1;
+
+  movie1.title = "Superman";
+  movie1.year = 2017;
+  movie1.director = " Bob";
+
+  cout<< movie1.title << "Was directed by" 
+      << movie1.director << "in "
+      <<movie1.year<< ". " endl;
+  return 0;
+}
+    

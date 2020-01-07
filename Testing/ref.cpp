@@ -1,0 +1,29 @@
+//
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+void refrence();
+int main(){
+
+  int hp = 10;
+  int *hit = &hp;
+  
+  string action;
+  cout<< "What would you like to do?"<<endl;
+  
+
+  reference(hit);
+  cout<< hp << endl;
+  
+
+  return 0;
+}
+void reference(int *hit){
+  
+  *hit = *hit+2;
+
+}
+

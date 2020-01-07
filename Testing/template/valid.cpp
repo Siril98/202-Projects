@@ -1,0 +1,38 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+template <class T>
+
+bool isValid(T input, T maxx){
+
+  if(input>maxx)
+    return false;
+  return true;
+}
+  
+int main(){
+
+  int input = 10;
+  int maxx = 5;
+
+  cout<< "10,5"<< endl;
+  cout<<isValid(input,maxx)<<endl;
+
+  double input1 = 8.5;
+  double maxx1 = 10.5;
+  cout<<isValid(input1,maxx1)<<endl;
+
+  char input2 = 'a';
+  char maxx2 = 'c';
+  cout <<"a,c" << endl;
+  cout<<isValid(input2,maxx2)<<endl;
+
+
+  //To break it
+  double* input3 = &input1;
+  double* maxx3 = &maxx1;
+  cout<< "pointer,pointer"<< endl;
+  cout<<isValid(*input3,*maxx3)<<endl;
+  return 0;
+}

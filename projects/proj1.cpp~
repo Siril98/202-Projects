@@ -1,0 +1,33 @@
+/*****************
+ ** File: proj1.coo
+ **Proect: CMSC 202 Project 1, Spring 2017
+ ** Author: Siril Pattammady
+ ** Date 2/12/2017
+ **Section: 13
+ **E-mail: psiril1@umbc.edu
+ **
+ **Description:
+ *******************/
+
+#include <iostream>
+using namespace std;
+
+
+int startMenu();
+int startMenu(){
+  //Allows user to pick to choose out of the options
+  cout<<" What would you like to do?"<<endl;
+  cout<<"1. Load a simulation from file"<<endl;
+  cout<<"2. Start a new simulation"<<endl;
+  cout<<"3. Exit"<<endl;
+  
+}
+
+int main(){
+  
+  startMenu();
+
+
+
+  return 0
+    }

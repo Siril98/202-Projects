@@ -1,0 +1,351 @@
+/**********
+ ** File: Proj1.cpp
+ ** Project: CMSC 202 Project 1, Spring 2017
+ ** Author: Siril Pattammady
+ ** Date: 2/15/2017
+ ** Section: 13
+ ** E-mail: psiril1@umbc.edu
+ **
+ ** Description:
+ ** This program replicates a 'manhunt simulator.'
+ ** It uses multiple functions, manages an array for a grid
+ ** and simple file input/output. The simulator is a 10x10 grid
+ ** where there is an investigator 'I' and target 'T.' The user will
+ ** be able to chose options from a start menu and main menu to
+ ** ultimately find the target choosing 'NORTH,SOUTH,EAST or WEST.'
+ ** Once the target is found or user gives up the program is over.
+ **
+ **
+*******/
+
+
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <string>
+#include <cmath>
+using namespace std;
+
+int const ROWS = 10;
+int const COLUMNS = 10;
+
+//Name: setMap
+// Function that declares and initializes the grid/board
+void setMap(char board[ROWS][COLUMNS]);
+void setMap(char board[ROWS][COLUMNS]){
+
+  for (int i = 0; i<10; ++i){
+
+    for(int j =0 ; j<10; ++j){
+
+      board[i][j] = '_';
+      
+    }
+  }
+}
+// Name: startMenu
+// Prints out the starting screen for the user.
+void startMenu();
+void startMenu(){
+  
+
+  cout<<"Manhunt\n";
+  cout<<"What would you like to do?\n";
+  cout<<"1. Load a simulation from file\n";
+  cout<<"2. Start a new simulation\n";
+  cout<<"3. Exit\n";
+  cout<<"Enter 1 - 3\n";
+}
+// Name: loadMap
+// Function that takes in text file from user
+// Has board, and variable pointers to save in the coordinates
+// of the Investigator and Target.
+void loadMap(char board[ROWS][COLUMNS],int *xInvest, int *yInvest, int *xTarget, int *yTarget);
+void loadMap(char board[ROWS][COLUMNS],int *xInvest, int *yInvest, int *xTarget, int *yTarget){
+
+  
+  char filename[80];
+  cout<< "What is the name of the file\n";
+  cin>> filename;
+  fstream theFile(filename);
+
+  //Loop that takes in the content of the file inputed from user
+  // and prints location of 'I' on board
+  while(theFile >> *xInvest >> *yInvest >> *xTarget >> *yTarget){
+
+    //    cout<< *xInvest << *xInvest << *xTarget << *yTarget<< endl;
+    board[*xInvest][*yInvest] = 'I';
+    cout<<board[*xInvest][*yInvest];
+    // board[*xTarget][*yTarget]= 'T';
+  }
+}
+// Name: printMap
+// Function that prints out the 10x10 board
+void printMap(char board[ROWS][COLUMNS]);
+void printMap(char board[ROWS][COLUMNS]){
+  
+  // Loop that prints out the board
+  cout<<"Map loaded\n";  
+  for(int i=0 ; i<ROWS; i++){
+    
+    for(int j=0; j<COLUMNS; j++){
+
+      cout<<board[i][j];
+      cout<< ' ';
+    }
+    cout<<"\n";
+  }  
+  cout<< endl;
+}
+// Name = checkSearch
+// Function that make sures that the Investigator does not go off the board
+// If the Investigator tries to go off the board then it'll repromt the user
+// to search in a different location
+int checkSearch(char board[ROWS][COLUMNS],int *xInvest, int *yInvest,int option);
+int checkSearch(char board[ROWS][COLUMNS],int *xInvest, int *yInvest,int option){
+
+  if(option == 1)
+    {
+      if(*xInvest == 0)
+	{
+	  cout<< "You cannot move north" << endl;
+	  return 1;
+	}
+    }
+  else if(option == 2)
+    {
+      if(*xInvest == 9)
+	{
+	  cout<< "You cannot move east" << endl;
+	  return 1;
+	}
+    }
+  else if(option == 3)
+    {
+      if(*yInvest == 9)
+	{
+	  cout<< "You cannot move south" << endl;
+	  return 1;
+	}
+    }
+  else if(option == 4)
+    {
+      if(*yInvest == 0)
+	{
+	  cout<< "You cannot move west" << endl;
+	  return 1;
+	}
+    }
+  
+  // returns 2 to switch statments showing that it is okay to search in the area user wants
+  return 2;
+}
+// Name: mainMenu
+// Function that prints out Main Menu and asks user for input
+// Based on user input the function implements switch statements
+// to execute the command offered.
+// Searches North, East, South, West and helps guide the user to target.
+// Function closes when user exits '6' or finds target
+void mainMenu(char board[ROWS][COLUMNS],int *xInvest, int *yInvest, int *xTarget,int *yTarget);
+void mainMenu(char board[ROWS][COLUMNS],int *xInvest, int *yInvest, int *xTarget,int *yTarget){
+
+  int check = 0;
+  
+  // do while statement until user finds target or exits
+   do
+  {
+    
+     int counter = 0;
+
+       
+      
+       if(counter % 2 == 0 and *yInvest > *yTarget){
+	 cout<<"Try searching West"<<endl;
+	 counter = counter+1;
+       }
+       else if(counter % 2 == 0 and *yInvest < *yTarget){
+	 cout<<"Try searching East" << endl;
+	 counter = counter+1;}
+    
+      
+       if(counter %2 != 0 and *xInvest > *xTarget){
+	 cout << "Try searching North" << endl;
+	 counter = counter + 1;
+       }
+      
+       else if(counter %2 !=0 and *xInvest < *xTarget){
+	 cout<< "Try searching South"<< endl;
+	 counter = counter + 1;
+       }
+      
+      // main menu print screen	
+	  int option; 
+	  cout<<"What would you like to do?\n"
+	      <<"1. Search North\n"
+	      <<"2. Search East \n"
+	      <<"3. Search South \n"
+	      <<"4. Search West \n"
+	      <<"5. See Map \n"
+	      <<"6. Exit\n"
+	      <<"Enter 1-6:\n";
+	  cin>>option;
+	 
+      //switch statements for options (1-6)
+	  switch(option){
+
+	//Searches North
+	    case 1:
+	      check = checkSearch(board, xInvest, yInvest, option);
+	      if(check == 2)
+		{
+		  board[*xInvest][*yInvest] = '*';
+		  board[*xInvest-1][*yInvest] = 'I';
+		  printMap(board);
+		  *xInvest = *xInvest-1;
+		}
+	      break;
+	//Searches East
+	  case 2:
+	    check = checkSearch(board, xInvest, yInvest, option);
+	    if(check == 2)
+	      {
+	      board[*xInvest][*yInvest] = '*';
+	      board[*xInvest][*yInvest+1] = 'I';
+	      printMap(board);
+	      *yInvest = *yInvest+1;
+	    }
+	    break;
+	//Searches South
+	  case 3:
+	    check = checkSearch(board, xInvest, yInvest, option);
+	    if(check == 2){
+	     
+	      board[*xInvest][*yInvest] = '*';
+	      board[*xInvest+1][*yInvest] = 'I';
+	      printMap(board);
+	      *xInvest = *xInvest+1;
+	    }
+	
+	    break;
+	//Searches West
+	  case 4:
+	    check = checkSearch(board, xInvest,yInvest, option);
+	    if(check == 2){
+	      
+	      board[*xInvest][*yInvest] = '*';
+	      board[*xInvest][*yInvest-1] = 'I';
+	      printMap(board);
+	      *yInvest = *yInvest-1;
+	    }
+	    break;
+	
+	// Prints Map
+	  case 5:
+	    printMap(board);
+	    break;
+	  
+	//Exits the program
+	  case 6:
+	  cout<<"Giving up already?\n"
+	  	<<"Good-bye\n";
+	  return;
+	  board[*xInvest][*yInvest] = board[*xTarget][*yTarget];
+	  break;
+  
+	  }
+	
+	  // do while the investigator coordinates is not equal to targets
+	}while(board[*xInvest][*yInvest] != board[*xTarget][*yTarget]);
+   
+  //Investigator finds target
+      if(board[*xInvest][*yInvest] == board[*xTarget][*yTarget]){
+	cout<< "You found the target " <<endl;
+    }
+}
+
+// Name: newMAP
+// Function if the user enters '2' to manually chose location of investigator and target
+// Saves the user input into pointer which is passed into the board
+void newMap(char board [ROWS][COLUMNS],int *xInvest, int *yInvest, int *xTarget,int *yTarget);
+void newMap(char board [ROWS][COLUMNS],int *xInvest, int *yInvest, int *xTarget,int *yTarget){
+
+   
+  // Make case for entering an int less than 0 and greater than 10;
+   cout<< "What is the X axis of the investigator?:\n";
+   cin>> *xInvest;
+   cout<< "What is the Y axis of the investigator?:\n";
+   cin>> *yInvest;
+   cout<< "What is the X axis of the target?:\n";
+   cin>> *xTarget;
+   cout<< "What is the Y axis of the target?:\n";
+   cin>> *yTarget;
+  
+
+   //Saves value for Investigator and Target
+   board[*xInvest][*yInvest] = 'I';
+   cout<<board[*xInvest][*yInvest];
+  
+   //  board[*xTarget][*yTarget] = 'T';
+   
+}
+
+// Main function that calls all functions above when needed
+
+int main(){
+
+  // Initializing investors and target coordinates as integers 
+  int investX = 0;
+  int investY = 0;
+  int targetX = 0;
+  int targetY = 0;
+  // Setting pointers for coordinates to pass to other functions
+  int *pointerIx = &investX;
+  int *pointerIy = &investY;
+  int *pointerTx = &targetX;
+  int *pointerTy = &targetY;
+
+  
+  // Declaring board array
+  char board[ROWS][COLUMNS] = {};
+  setMap(board);
+  
+  //Calls function that prints start menu
+  startMenu();
+  // Takes in user input for start menu choice
+  int choice;
+  cin>>choice;
+  
+  // If user choice is invalid
+  while(choice>3 or choice<1){
+    cout<<"Invalid choice. Try again.\n";
+    cout<<"Enter 1-3\n";
+    cin>>choice;
+      
+  }
+
+  // Conditions for when user enters (1-3) for very first menu
+  switch(choice){
+    //calls read map function, print board, and mainMenu function
+  case 1:
+    {
+      loadMap(board,pointerIx,pointerIy,pointerTx,pointerTy);    
+      printMap(board);
+      mainMenu(board,pointerIx,pointerIy,pointerTx,pointerTy);
+      break;
+    }
+    // calls newMap function for user to enter coordinates
+    // Executes the rest similar to case 1
+  case 2:
+    newMap(board,pointerIx,pointerIy,pointerTx,pointerTy);
+    printMap(board);
+    mainMenu(board,pointerIx,pointerIy,pointerTx,pointerTy);
+    break;
+    // Exits program
+  case 3:
+    cout<<"Giving up so soon?\n"
+	<<"Good-bye\n";
+    break;
+  }    	 
+  return 0;
+}
+  

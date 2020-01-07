@@ -1,0 +1,41 @@
+#ifndef BAG_H
+#define BAG_H
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+template <class A>
+class Bag{
+
+public:
+  Bag(A item);
+  ~Bag();
+  A GetItem();
+private:
+  A m_item;
+};
+
+template <class A>
+Bag<A>:: Bag(A item){
+  m_item = item;
+}
+
+template <class A>
+Bag <A>:: ~Bag(){}
+
+template <class A>
+Bag<A> :: GetItem(){
+
+  return m_item;
+}
+
+int main(){
+  int int1 =10;
+  Bag<int> bag1(int1);
+
+  cout << bag1.GetItem() << endl;
+
+}
+#endif

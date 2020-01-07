@@ -1,0 +1,26 @@
+#include "Student.h"
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+Student::Student(){
+  m_num;
+  *m_ptr;
+
+}
+Student::~Student(){
+
+
+}
+
+void Student::Display(){
+
+  
+  cout<< "Enter total num
+
+int main() {
+  Student s;
+  s.Display();
+  return 0;
+}

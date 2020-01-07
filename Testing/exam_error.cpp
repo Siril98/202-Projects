@@ -1,0 +1,30 @@
+// Finding 6 errors in code
+
+#include <iostream>
+using namespace std;
+
+const int NUM_SCORES = 3;
+
+double average(int scores);
+int main(){
+
+  int scores[NUM_SCORES];
+  for(int i = 0; i < NUM_SCORES ; i++){
+    cout<< "Enter score #" << i+1 << ":" <<endl;
+    cin>> scores[i+1];
+  }
+  double avg = average(scores[NUM_SCORES]);
+  cout<< "The average score was : " << avg << endl;
+
+  return 0;
+}
+
+double average(int scores[]){
+  int total = 0;
+  for(int i = 0; i < NUM_SCORES; i++){
+    total += scores[i];
+    cout<< total << endl;     
+  }
+  
+  return(total/NUM_SCORES);
+}

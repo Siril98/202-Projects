@@ -1,0 +1,31 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main(){
+
+  char* var2;
+  int size;
+  char letter;
+
+
+  cout << "How long is your string? :" << endl;
+  cin>> size;
+
+  var2 = new char[size];
+
+  for(int i =0; i <size ; i++){
+    cout << "Please enter a letter" << endl;
+    cin >> letter;
+    var2[i] = letter;
+  }
+
+  var2[-1] = '\0';
+
+  cout<< "Your string says " << var2 << endl;
+
+  delete [] var2;
+  return 0;
+
+}

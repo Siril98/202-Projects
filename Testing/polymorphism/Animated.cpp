@@ -1,0 +1,7 @@
+#include "Animated.h"
+
+void Animated::ShowMovie(){
+
+  cout<< "The animated movie was shown." << endl;
+
+}
